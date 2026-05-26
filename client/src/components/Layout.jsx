@@ -5,6 +5,7 @@ import {
   Landmark,
   Upload,
   Settings,
+  Tag,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -12,6 +13,7 @@ const NAV_ITEMS = [
   { to: "/transactions", icon: ArrowUpDown, label: "Transactions" },
   { to: "/accounts", icon: Landmark, label: "Accounts" },
   { to: "/upload", icon: Upload, label: "Upload" },
+  { to: "/vendor-rules", icon: Tag, label: "Vendor Rules" },
   { to: "/settings", icon: Settings, label: "Settings" },
 ];
 
@@ -22,7 +24,7 @@ export default function Layout({ currency, onCurrencyChange }) {
         <div className="p-6 border-b border-slate-200">
           <h1 className="text-xl font-bold text-indigo-600">FinTrack</h1>
           <p className="text-xs text-slate-500 mt-1">
-            Personal Finance Tracker
+            Bank Statement Analyzer
           </p>
         </div>
         <nav className="flex-1 p-4 space-y-1">
@@ -54,7 +56,7 @@ export default function Layout({ currency, onCurrencyChange }) {
             className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg bg-white"
           >
             <option value="USD">USD ($)</option>
-            <option value="INR">INR (₹)</option>
+            <option value="INR">INR (&#8377;)</option>
           </select>
         </div>
       </aside>
