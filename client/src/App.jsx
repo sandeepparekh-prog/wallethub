@@ -6,6 +6,7 @@ import Transactions from "./pages/Transactions";
 import Accounts from "./pages/Accounts";
 import Upload from "./pages/Upload";
 import Settings from "./pages/Settings";
+import VendorRules from "./pages/VendorRules";
 
 export default function App() {
   const [currency, setCurrency] = useState("USD");
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/accounts" element={<Accounts />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/vendor-rules" element={<VendorRules />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>

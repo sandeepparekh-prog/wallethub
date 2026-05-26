@@ -18,6 +18,7 @@ app.use("/api/accounts", require("./routes/accounts"));
 app.use("/api/upload", require("./routes/upload"));
 app.use("/api/analytics", require("./routes/analytics"));
 app.use("/api/exchange-rates", require("./routes/exchangeRates"));
+app.use("/api/vendor-rules", require("./routes/vendorRules"));
 
 // Serve static frontend in production
 const clientBuild = path.join(__dirname, "..", "client", "dist");

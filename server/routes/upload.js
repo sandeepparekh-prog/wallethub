@@ -50,8 +50,8 @@ router.post("/", upload.single("file"), async (req, res) => {
 
     if (records.length > 0) {
       const insert = db.prepare(
-        `INSERT INTO transactions (date, description, amount, currency, category, type, source)
-         VALUES (?, ?, ?, ?, ?, ?, ?)`
+        `INSERT INTO transactions (date, description, amount, currency, category, type, source, vendor)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
       );
 
       const insertMany = db.transaction((txns) => {
@@ -63,7 +63,8 @@ router.post("/", upload.single("file"), async (req, res) => {
             t.currency,
             t.category,
             t.type,
-            t.source
+            t.source,
+            t.vendor || null
           );
         }
       });
@@ -75,10 +76,16 @@ router.post("/", upload.single("file"), async (req, res) => {
       "UPDATE uploaded_files SET processed = 1, records_imported = ? WHERE id = ?"
     ).run(records.length, fileRecord.lastInsertRowid);
 
+    const typeSummary = {};
+    for (const r of records) {
+      typeSummary[r.type] = (typeSummary[r.type] || 0) + 1;
+    }
+
     res.json({
       message: "File processed successfully",
       filename: req.file.originalname,
       recordsImported: records.length,
+      summary: typeSummary,
       preview: records.slice(0, 10),
     });
   } catch (err) {
